@@ -4,6 +4,16 @@ require './exercise'
 
 describe Exercise do
   describe "#marklar" do
+    it 'should return '' for invalid input' do
+      Exercise.marklar(1).must_equal ''
+      Exercise.marklar(nil).must_equal ''
+      Exercise.marklar("").must_equal ''
+    end
+
+    it 'should marklar only words containing letters' do
+      Exercise.marklar('Mark1ar l1ves at 454433  Palm st.  San Andreas, CA').must_equal 'Mark1ar l1ves at 454433  Palm st.  San Marklar, CA'
+    end
+
     it "should return a marklar'd string" do
       Exercise.marklar("The quick brown fox").must_equal "The marklar marklar fox"
     end
@@ -19,7 +29,17 @@ describe Exercise do
   end
 
   describe "#even_fibonacci" do
-    it "should sum the even numbers in a Fibonacci sequence" do
+    it 'should return 0 for invalid input' do
+      Exercise.even_fibonacci(-1).must_equal 0
+      Exercise.even_fibonacci(nil).must_equal 0
+      Exercise.even_fibonacci("33").must_equal 0
+      Exercise.even_fibonacci(2.3).must_equal 0
+    end
+
+    it "should sum the even numbers in a Fibonacci sequence" do      
+      Exercise.even_fibonacci(0).must_equal 0
+      Exercise.even_fibonacci(2).must_equal 0
+      Exercise.even_fibonacci(3).must_equal 2
       Exercise.even_fibonacci(5).must_equal 2
       Exercise.even_fibonacci(11).must_equal 44
       Exercise.even_fibonacci(19).must_equal 3382
